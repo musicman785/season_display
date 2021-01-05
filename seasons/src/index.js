@@ -5,6 +5,21 @@ import SeasonDisplay from "./SeasonDisplay";
 
 
 class App extends Component {
+
+    state = {
+        lat: null,
+        errorMessage: ""
+    };
+
+    componentDidMount() {
+        window.navigator.geolocation.getCurrentPosition(
+            (position) => console.log(position),
+            (err) => console.log(err)
+        )
+    };
+
+
+
     render() {
         return <SeasonDisplay />
     }
