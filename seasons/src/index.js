@@ -13,16 +13,29 @@ class App extends Component {
 
     componentDidMount() {
         window.navigator.geolocation.getCurrentPosition(
-            (position) => console.log(position),
-            (err) => console.log(err)
+            (position) => this.setState({ lat: position.coords.latitude }),
+            (err) => this.setState({ errorMessage: err.message })
         )
     };
 
+    renderContent() {
+        if (this.state.errorMessage && !this.state.lat) {
+            return <div>Error: {this.state.errorMessage}</div>
+        }
+        if (this.state.lat && !this.state.errorMessage) {
+            return <SeasonDisplay lat={this.state.lat} />
+        }
+        return <div>Loading...</div>
+    }
 
 
     render() {
-        return <SeasonDisplay />
-    }
+        return (
+            <div>
+                {this.renderContent()}
+            </div>
+        );
+    };
 };
 
 
