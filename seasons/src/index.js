@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import SeasonDisplay from "./SeasonDisplay";
 
 
 
 class App extends Component {
     render() {
-        return <h1>Hello There!!</h1>
+        return <SeasonDisplay />
     }
 };
 
